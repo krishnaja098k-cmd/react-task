@@ -1,38 +1,16 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Counter from "./Counter";
 
-function ProductFilter() {
-  const [price, setPrice] = useState("");
-
-  const products = [
-    { name: "Laptop", price: 50000 },
-    { name: "Phone", price: 20000 },
-    { name: "Tablet", price: 15000 },
-    { name: "Headphones", price: 3000 }
-  ];
-
-  const filtered = products.filter((p) =>
-    price === "" ? true : p.price <= price
-  );
-
+function App() {
   return (
-    <div>
-      <h2>Product Filter</h2>
-
-      <input
-        type="number"
-        placeholder="Enter max price"
-        onChange={(e) => setPrice(e.target.value)}
-      />
-
-      <ul>
-        {filtered.map((p, i) => (
-          <li key={i}>
-            {p.name} - ₹{p.price}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router basename="/react-task">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/js/counter" element={<Counter />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default ProductFilter;
+export default App;
